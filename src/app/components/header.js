@@ -1,16 +1,18 @@
 
 import * as React from 'react'
 import Link from 'next/link'
+import NavBar from './nav-bar'
 
 const Header = ( { pathname } ) => (
-    <header>
+    <div>
+        <NavBar />
         <Link href="/">
             <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
         </Link>{' '}
         <Link href="/about">
             <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
         </Link>
-    </header>
+    </div>
 )
 
 export default Header;
