@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest/globals": true,
+    "webdriverio/wdio": true,
+    "mocha": true
+  },
+  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "plugins": ["prettier", "jest"],
+  "rules": {
+    "indent": ["error", 2],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+    "react/destructuring-assignment": 0,
+    "template-curly-spacing": ["error", "never"],
+    "import/prefer-default-export": 0,
+    "react/prop-types": 0
+  }
+}

@@ -1,23 +1,34 @@
 {
   "name": "hanuman",
   "version": "1.0.0",
-  "description": "",
+  "description": "This hosts the Next.js app on Firebase Cloud Functions with Firebase Hosting rewrite rules so our app is served from our Firebase Hosting URL. Each individual page bundle is served in a new call to the Cloud Function which performs the initial server render.",
   "main": "index.js",
   "engines": {
-    "node": "13.9.0"
+    "node": "10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.8.7",
+    "isomorphic-fetch": "2.2.1",
+    "npm-run-all": "4.1.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.6",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/preset-env": "7.9.6",
+    "@babel/preset-react": "7.9.4",
+    "babel-loader": "8.1.0",
+    "firebase-tools": "8.2.0",
+    "prettier": "2.0.5",
+    "webpack-node-externals": "1.7.2"
   },
   "scripts": {
-    "dev": "next \"src/app/\"",
-    "preserve": "npm run build-public && npm run build-funcs && npm run build-app && npm run copy-deps && npm run install-deps",
-    "serve": "cross-env NODE_ENV=production firebase serve",
-    "predeploy": "npm run build-public && npm run build-funcs && npm run build-app && npm run copy-deps",
-    "deploy": "NODE_ENV=production firebase deploy",
-    "clean": "rimraf \"dist/functions/**\" && rimraf \"dist/public\"",
-    "build-public": "cpx \"src/app/public/**/*.*\" \"dist/public\" -C",
-    "build-funcs": "babel \"src/functions\" --out-dir \"dist/functions\"",
-    "build-app": "next build \"src/app/\"",
-    "copy-deps": "cpx \"*{package.json,package-lock.json,yarn.lock}\" \"dist/functions\" -C",
-    "install-deps": "cd \"dist/functions\" && npm i"
+    "c-install": "npm ci && cd functions && npm ci && cd ../src && npm ci",
+    "build": "cd src && npm run build",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:build-server": "cd src && npm run devServer",
+    "dev:build-client": "cd src && npm run devClient",
+    "dev-server": "firebase serve --only functions,hosting"
   },
   "repository": {
     "type": "git",
@@ -29,26 +40,5 @@
   "bugs": {
     "url": "https://github.com/vishwasc20/hanuman/issues"
   },
-  "homepage": "https://github.com/vishwasc20/hanuman#readme",
-  "dependencies": {
-    "@babel/runtime": "7.9.2",
-    "@material-ui/core": "4.9.11",
-    "@material-ui/icons": "4.9.1",
-    "body-parser": "1.19.0",
-    "express": "4.17.1",
-    "firebase-admin": "8.11.0",
-    "firebase-functions": "3.6.1",
-    "isomorphic-fetch": "2.2.1",
-    "next": "9.3.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "cpx": "1.5.0",
-    "cross-env": "7.0.2",
-    "firebase-functions-test": "0.2.1",
-    "firebase-tools": "8.1.1",
-    "rimraf": "3.0.2"
-  }
+  "homepage": "https://github.com/vishwasc20/hanuman#readme"
 }
