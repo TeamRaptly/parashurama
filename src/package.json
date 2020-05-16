@@ -10,6 +10,7 @@
     "build": "npm run buildClient && npm run buildServer"
   },
   "dependencies": {
+    "axios": "0.19.2",
     "firebase": "7.9.2",
     "prop-types": "15.7.2",
     "react": "16.13.0",

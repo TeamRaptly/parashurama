@@ -7,7 +7,6 @@ const createGetter = require('../config/create-getter');
 function createTranslations(translationFiles, locales) {
   return locales.reduce((translations, lang) => {
     const [locale] = lang.split('-');
-
     const translationsWithRegionOverrides = recursiveMerge(
       true,
       translationFiles[locale] || {},
@@ -38,7 +37,7 @@ const translationsObject = {
 module.exports.translations = function (req, res, next) {
   const allLocales = createTranslations(
     translationsObject.readJSONfiles,
-    config('locales')
+    config('supportedLanguages')
   );
 
   res.locals.translations = allLocales;

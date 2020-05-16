@@ -1,5 +1,4 @@
 const loadConfig = require('./load-config');
-const createGetter = require('./create-getter');
 
 const resolve = require('path').resolve;
 

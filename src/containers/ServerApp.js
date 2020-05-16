@@ -6,11 +6,12 @@ import App from '../App';
 export default class ServerApp extends React.Component {
   render() {
     const {
-      initialState: { config, translations }
+      initialState: { config, translations, language }
     } = this.props;
     const helpers = {
       config,
-      translations
+      translations,
+      language
     };
 
     return (

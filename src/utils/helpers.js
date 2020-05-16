@@ -12,7 +12,8 @@ class Helpers {
   constructor(data) {
     this._config = createGetter(data.config);
     this._features = {};
-    this._translations = createGetter(data.translations);
+    this._language = data.language;
+    this._translations = createGetter(data.translations[this._language]);
   }
 
   c(configKey) {
@@ -21,6 +22,10 @@ class Helpers {
 
   f(feature) {
     return this._features;
+  }
+
+  language() {
+    return this._language;
   }
 
   t(key) {

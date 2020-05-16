@@ -4,7 +4,7 @@
   "description": "This hosts the Next.js app on Firebase Cloud Functions with Firebase Hosting rewrite rules so our app is served from our Firebase Hosting URL. Each individual page bundle is served in a new call to the Cloud Function which performs the initial server render.",
   "main": "index.js",
   "engines": {
-    "node": "10"
+    "node": "10.13.0"
   },
   "dependencies": {
     "@babel/polyfill": "7.8.7",
