@@ -1,4 +1,5 @@
 module.exports = {
-  locales: ['en', 'kn'],
-  _secret: 'somethign very secret',
+  defaultLanguage: 'en',
+  supportedLanguages: ['en', 'kn'],
+  _secret: 'somethign very secret'
 };

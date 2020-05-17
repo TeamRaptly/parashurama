@@ -1,26 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { enableBatching } from 'redux-batched-actions';
+import thunk from 'redux-thunk';
 import CreateContext from '../utils/create-context';
+import reducers, { getDefaultStateFromProps } from '../reducers';
 import App from '../App';
 
-import createGetter from '../utils/create-getter';
-
-let config, translations;
-
-if (window && window.__initialState) {
-  config = createGetter(window.__initialState.config || {});
-  translations = createGetter(window.__initialState.translations || {});
-}
-
-console.log('client app. config...', config('locales'));
-console.log('client app. translations...', translations('kn.welcome'));
+const store = createStore(
+  enableBatching(reducers),
+  getDefaultStateFromProps(window.__initialState),
+  applyMiddleware(thunk)
+);
 
 ReactDOM.hydrate(
-  <BrowserRouter>
-    <CreateContext>
-      <App facts={window.__initialState.facts} />
-    </CreateContext>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <CreateContext>
+        <App facts={window.__initialState.facts} />
+      </CreateContext>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
