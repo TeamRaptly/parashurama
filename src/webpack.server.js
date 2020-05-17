@@ -12,7 +12,8 @@ module.exports = Object.assign(
       filename: 'server.bundle.js',
       path: path.resolve(__dirname, '../functions/build'),
       libraryTarget: 'commonjs2'
-    }
+    },
+    devtool: 'source-map'
   },
   baseConfig
 );

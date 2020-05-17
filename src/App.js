@@ -4,30 +4,19 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Home from './components/home';
 import About from './components/about';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { changeLanguage } from './actions/app-action-creators';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
   //Just used for debugging language changer
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
-    axios
-      .post('/set-language', {
-        language: 'kn'
-      })
-      .then((resp) => {
-        console.log('resp...', resp);
-        if (resp && resp.status === 200) {
-          window.__initialState.language = resp.data.language;
-        }
-      })
-      .catch((err) => {
-        console.log('error...', err);
-      });
-  }
+    this.props.changeLanguage('kn');
+  };
 
   render() {
     const facts =
@@ -72,3 +61,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default connect(null, { changeLanguage })(App);

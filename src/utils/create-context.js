@@ -5,7 +5,8 @@ import _Helpers from '../utils/helpers';
 export const contextTypes = {
   c: PropTypes.func.isRequired,
   f: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  language: PropTypes.func.isRequired
 };
 
 export default class CreateContext extends Component {
@@ -24,7 +25,7 @@ export default class CreateContext extends Component {
     if (!process.env.IS_SERVER) {
       this._helpers = new _Helpers(window.__initialState);
     } else {
-      this._helpers = new _Helpers(this.props.helpers);
+      this._helpers = new _Helpers(props.helpers);
     }
 
     this._childContext = {
