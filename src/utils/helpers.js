@@ -22,8 +22,6 @@ class Helpers {
   }
 
   f(feature) {
-    console.log('feature.....helper///', feature);
-
     return this._features[feature];
   }
 

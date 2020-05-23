@@ -50,24 +50,21 @@ class Features extends React.Component {
           <Link to="/">Back to Home</Link>
 
           <ul>
-            {featureState.map((f) => {
-              console.log('f....', f);
-              return (
-                <FeaturesListItem key={f.name}>
-                  <h2>{f.name}</h2>
-                  <p>{f.description}</p>
-                  <FeaturesLink
-                    to={`${this.props.location.pathname}?${
-                      f.queryString
-                    }=${!f.current}`}
-                    onClick={(e) => this.handleFeatureClick(e, f)}
-                  >
-                    {f.current ? 'Turn off' : 'Turn on'}
-                  </FeaturesLink>
-                  <span>{` (Default: ${f.default ? 'on' : 'off'})`}</span>
-                </FeaturesListItem>
-              );
-            })}
+            {featureState.map((f) => (
+              <FeaturesListItem key={f.name}>
+                <h2>{f.name}</h2>
+                <p>{f.description}</p>
+                <FeaturesLink
+                  to={`${this.props.location.pathname}?${
+                    f.queryString
+                  }=${!f.current}`}
+                  onClick={(e) => this.handleFeatureClick(e, f)}
+                >
+                  {f.current ? 'Turn off' : 'Turn on'}
+                </FeaturesLink>
+                <span>{` (Default: ${f.default ? 'on' : 'off'})`}</span>
+              </FeaturesListItem>
+            ))}
           </ul>
         </FeaturesContainer>
       </>

@@ -11,10 +11,7 @@ try {
   const rawFeatures = require(FEATURE_DEFINITION_FILE);
 
   featureDefinitions = new Map(
-    Object.keys(rawFeatures).map((feature) => {
-      console.log('feature...', feature);
-      return [feature, rawFeatures[feature]];
-    })
+    Object.keys(rawFeatures).map((feature) => [feature, rawFeatures[feature]])
   );
 } catch (e) {
   throw new Error(`Error parsing features file definitions: ${e.message}`);
