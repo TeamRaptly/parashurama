@@ -7,9 +7,14 @@ module.exports = Object.assign(
   {},
   {
     target: 'node',
-    entry: './containers/ServerApp.js',
+    entry: {
+      server: './containers/ServerApp.js',
+      // Remove components from route config
+      // and make the component dynamically loaded with page bundles
+      routes: './route-config/index.js'
+    },
     output: {
-      filename: 'server.bundle.js',
+      filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../functions/build'),
       libraryTarget: 'commonjs2'
     },

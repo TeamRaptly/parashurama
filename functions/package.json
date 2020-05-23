@@ -14,7 +14,10 @@
     "ramda": "0.27.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "serialize-javascript": "3.0.0"
+    "react-router": "5.2.0",
+    "react-router-config": "5.1.1",
+    "serialize-javascript": "3.0.0",
+    "styled-components": "4.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "7.9.6",

@@ -1,3 +1,5 @@
+const { getEnabledFeatures } = require('../middlewares/features');
+
 module.exports.allPropsHelper = function (req, res, next) {
   res.locals.csrfToken =
     typeof req.csrfToken === 'function' ? req.csrfToken() : '';
@@ -10,7 +12,8 @@ module.exports.allPropsHelper = function (req, res, next) {
 
   res.locals.props.helpers = {
     config: res.locals.config,
-    features: req.f,
+    featuresDefinitions: getEnabledFeatures(),
+    features: req.features,
     translations: res.locals.translations,
     language: res.locals.language
   };

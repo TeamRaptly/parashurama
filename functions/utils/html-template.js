@@ -16,6 +16,7 @@ const template = (opts) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/assets/styles.css" />
+        ${opts.styles}
       </head>
       <body>
         <div id="root">${opts.body}</div>

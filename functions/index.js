@@ -3,14 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-const { getFacts } = require('./facts');
 const { renderApp } = require('./utils/renderer');
+const { loadRouteData } = require('./utils/gather-route-dependent-resources');
 
 const { language } = require('./middlewares/language');
 const { translations } = require('./middlewares/translations');
 const { config } = require('./middlewares/config');
 const { allPropsHelper } = require('./middlewares/locals-props-helper');
 const { enhanceLocalsProps } = require('./middlewares/enhance-locals-props');
+const { featuresMiddleware } = require('./middlewares/features');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(enhanceLocalsProps);
 app.use(config);
 app.use(language);
 app.use(translations);
+app.use(featuresMiddleware);
 app.use(allPropsHelper);
 
 app.get('/favicon.ico', (req, res) => {
@@ -36,31 +38,21 @@ app.post('/set-language', (req, res) => {
     maxAge: 31536000000 // one year
   });
 
-  // res.format({
-  //   html: use renderTemplate here for server side render,
-  //   json: res.status(200).json({ language: receivedLanguage })
-  // });
   res.status(200).json({ language: receivedLanguage });
 });
 
-app.get('/', (req, res) => {
-  return getFacts().then((facts) => {
-    res.set('Cache-Control', 'public, max-age=600, s-max-age=1200');
-
-    return renderApp(req, res, { facts }, 'Home Page');
-  });
-});
-
-app.get('/about', (req, res) => {
-  return getFacts().then((facts) => {
-    res.set('Cache-Control', 'public, max-age=600, s-max-age=1200');
-
-    return renderApp(req, res, { facts }, 'About Page');
-  });
+app.post('/resources', (req, res) => {
+  return loadRouteData(req, res, req.body)
+    .then((data) => {
+      return res.json(data);
+    })
+    .catch((err) => {
+      return res.status(400).send('Error fetching data>>>', err);
+    });
 });
 
 app.get('*', (req, res) => {
-  res.status(400).send('Error');
+  return renderApp(req, res, {}, 'Generic Page');
 });
 
 module.exports.hanumanServer = functions.https.onRequest(app);

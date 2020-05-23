@@ -1,8 +1,16 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
+    //This should be above the class properties plugin.
+    // reason: https://babeljs.io/docs/en/babel-plugin-proposal-decorators#note-compatibility-with-babel-plugin-proposal-class-properties
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "@babel/plugin-transform-arrow-functions",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-optional-chaining",
+    "babel-plugin-styled-components"
   ]
 }
+
+// https://styled-components.com/docs/tooling#syntax-notes
+// Turning rules off

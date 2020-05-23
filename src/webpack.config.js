@@ -23,7 +23,14 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        // Should be after babel-loader
+        test: /\.js$/,
+        loader: 'stylelint-custom-processor-loader',
+        exclude: /node_modules/
       }
     ]
-  }
+  },
+  plugins: []
 };

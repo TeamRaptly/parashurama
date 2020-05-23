@@ -11,7 +11,8 @@ import createGetter from './create-getter';
 class Helpers {
   constructor(data) {
     this._config = createGetter(data.config);
-    this._features = {};
+    this._features = data.features;
+    this._featuresDefinitions = data.featuresDefinitions;
     this._language = data.language;
     this._translations = createGetter(data.translations[this._language]);
   }
@@ -21,7 +22,13 @@ class Helpers {
   }
 
   f(feature) {
-    return this._features;
+    console.log('feature.....helper///', feature);
+
+    return this._features[feature];
+  }
+
+  featuresDefinitions() {
+    return this._featuresDefinitions;
   }
 
   language() {

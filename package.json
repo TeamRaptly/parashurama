@@ -24,11 +24,12 @@
   },
   "scripts": {
     "c-install": "npm ci && cd functions && npm ci && cd ../src && npm ci",
-    "build": "cd src && npm run build",
-    "dev": "npm-run-all --parallel dev:*",
+    "build": "NODE_ENV=production cd src && npm run build",
+    "dev": "HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:build-server": "cd src && npm run devServer",
     "dev:build-client": "cd src && npm run devClient",
-    "dev-server": "firebase serve --only functions,hosting"
+    "dev-server": "HOST_ENV=local NODE_ENV=dev firebase serve --only functions,hosting",
+    "analyze": "cd src && npm run analyze"
   },
   "repository": {
     "type": "git",

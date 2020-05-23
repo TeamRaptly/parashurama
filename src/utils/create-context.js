@@ -23,7 +23,7 @@ export default class CreateContext extends Component {
     super(props, context);
 
     if (!process.env.IS_SERVER) {
-      this._helpers = new _Helpers(window.__initialState);
+      this._helpers = new _Helpers(window.__initialState.helpers);
     } else {
       this._helpers = new _Helpers(props.helpers);
     }

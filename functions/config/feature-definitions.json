@@ -1,0 +1,7 @@
+{
+  "enableList": {
+    "description": "To enable list",
+    "name": "Enable a List in website",
+    "queryString": "enable-list"
+  }
+}
