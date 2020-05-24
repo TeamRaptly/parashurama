@@ -8,7 +8,9 @@
     "@babel/plugin-transform-arrow-functions",
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    "babel-plugin-syntax-dynamic-import",
+    "@loadable/babel-plugin"
   ]
 }
 

@@ -6,14 +6,10 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const webpackConfigClient = require('../webpack.client');
 const webpackConfigServer = require('../webpack.server');
 
+// Client bundle
 webpackConfigClient.plugins.push(
   new BundleAnalyzerPlugin({
     analyzerPort: 9999
-  })
-);
-webpackConfigServer.plugins.push(
-  new BundleAnalyzerPlugin({
-    analyzerPort: 9998
   })
 );
 
@@ -24,8 +20,15 @@ webpack(webpackConfigClient, (err, stats) => {
   }
 });
 
-webpack(webpackConfigServer, (err, stats) => {
-  if (err || stats.hasErrors()) {
-    console.error(err);
-  }
-});
+// Server bundle
+// webpackConfigServer.plugins.push(
+//   new BundleAnalyzerPlugin({
+//     analyzerPort: 9998
+//   })
+// );
+
+// webpack(webpackConfigServer, (err, stats) => {
+//   if (err || stats.hasErrors()) {
+//     console.error(err);
+//   }
+// });

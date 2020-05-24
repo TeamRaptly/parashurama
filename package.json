@@ -28,8 +28,10 @@
     "dev": "HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:build-server": "cd src && npm run devServer",
     "dev:build-client": "cd src && npm run devClient",
-    "dev-server": "HOST_ENV=local NODE_ENV=dev firebase serve --only functions,hosting",
-    "analyze": "cd src && npm run analyze"
+    "dev-server": "HOST_ENV=local NODE_ENV=development firebase serve --only functions,hosting",
+    "analyze": "NODE_ENV=production npm-run-all --parallel analyze:*",
+    "analyze:client-bundle": "cd src && npm run analyze-client-bundle",
+    "analyze:server-bundle": "cd src && npm run analyze-server-bundle"
   },
   "repository": {
     "type": "git",

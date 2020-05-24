@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const hbs = require('express-handlebars');
+const path = require('path');
 
 const { renderApp } = require('./utils/renderer');
 const { loadRouteData } = require('./utils/gather-route-dependent-resources');
@@ -16,6 +18,16 @@ const { featuresMiddleware } = require('./middlewares/features');
 const app = express();
 
 process.env.IS_SERVER = true;
+
+// view engine setup
+app.engine(
+  'hbs',
+  hbs({
+    extname: 'hbs'
+  })
+);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

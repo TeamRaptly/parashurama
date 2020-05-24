@@ -1,8 +1,4 @@
-const path = require('path');
-const nodeEnv = process.env.NODE_ENV || 'production';
-
 module.exports = {
-  mode: nodeEnv,
   resolve: {
     extensions: ['.js', '.jsx']
     // alias: {
@@ -11,9 +7,6 @@ module.exports = {
     //     '../functions/firebase-database'
     //   )
     // }
-  },
-  resolveLoader: {
-    modules: [path.resolve(__dirname, './node_modules')]
   },
   module: {
     rules: [
@@ -31,6 +24,5 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  },
-  plugins: []
+  }
 };

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { enableBatching } from 'redux-batched-actions';
 import thunk from 'redux-thunk';
 import { renderRoutes } from 'react-router-config';
+// import { loadableReady } from '@loadable/component';
 import CreateContext from '../utils/create-context';
 import reducers, { getDefaultStateFromProps } from '../reducers';
 import PendingNavDataLoader from '../utils/pending-nav-data-loader';

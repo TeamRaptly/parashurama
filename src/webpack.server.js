@@ -1,11 +1,17 @@
 const baseConfig = require('./webpack.config');
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+const nodeEnv = process.env.NODE_ENV || 'production';
+const isProduction = nodeEnv === 'production';
 
 // Note that since this is for the server, it is important to
 // set the target to node and set the libraryTarget to commonjs2
-module.exports = Object.assign(
-  {},
-  {
+const serverConfig = {
+  ...baseConfig,
+  ...{
+    mode: nodeEnv,
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     target: 'node',
     entry: {
       server: './containers/ServerApp.js',
@@ -18,7 +24,19 @@ module.exports = Object.assign(
       path: path.resolve(__dirname, '../functions/build'),
       libraryTarget: 'commonjs2'
     },
-    devtool: 'source-map'
-  },
-  baseConfig
-);
+    externals: [
+      nodeExternals({
+        modulesDir: ['../functions/node_modules/']
+      })
+    ],
+    plugins: [
+      new webpack.BannerPlugin({
+        banner: 'require("source-map-support").install();',
+        raw: true,
+        entryOnly: false
+      })
+    ]
+  }
+};
+
+module.exports = serverConfig;
