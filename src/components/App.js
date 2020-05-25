@@ -1,9 +1,5 @@
 import React from 'react';
-// import { Switch, Route } from 'react-router';
 import { Link } from 'react-router-dom';
-// import { Helmet } from 'react-helmet';
-// import Home from './components/home';
-// import About from './components/about';
 import { connect } from 'react-redux';
 import { changeLanguage } from '../actions/app-action-creators';
 import { getFacts } from '../reducers/facts';
@@ -17,7 +13,8 @@ class App extends React.Component {
     super(props);
   }
 
-  //Just used for debugging language changer
+  // TODO: Remove once language changer is implemented
+  // Just used for debugging language changer
   handleClick = (e) => {
     e.preventDefault();
     this.props.changeLanguage('kn');

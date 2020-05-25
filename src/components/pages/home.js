@@ -8,9 +8,10 @@ import { fetchResources } from '../../actions/resources-action-creators';
 @connect(null, { fetchResources })
 @helpers(['c', 't'])
 export default class Home extends React.Component {
+  // TODO: remove me
+  // Used to see how dynamic resource fetching should work
   // componentDidMount() {
   // console.log('Component did mount called...and resource fetch started');
-  //Move this to resources on server
   // this.props.fetchResources({ resources: ['facts'], dependencies: 'abc' });
   // }
 

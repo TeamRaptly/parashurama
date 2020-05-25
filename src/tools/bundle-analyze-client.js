@@ -19,16 +19,3 @@ webpack(webpackConfigClient, (err, stats) => {
     console.error(err);
   }
 });
-
-// Server bundle
-// webpackConfigServer.plugins.push(
-//   new BundleAnalyzerPlugin({
-//     analyzerPort: 9998
-//   })
-// );
-
-// webpack(webpackConfigServer, (err, stats) => {
-//   if (err || stats.hasErrors()) {
-//     console.error(err);
-//   }
-// });
