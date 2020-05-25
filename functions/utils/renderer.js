@@ -2,8 +2,6 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const { ServerStyleSheet } = require('styled-components');
 const serialize = require('serialize-javascript');
-
-const { template } = require('./html-template');
 const { matchRoutes } = require('react-router-config');
 const { loadRouteData } = require('./gather-route-dependent-resources');
 
