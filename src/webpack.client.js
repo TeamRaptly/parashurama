@@ -13,7 +13,13 @@ const clientConfig = {
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, '../public/assets')
+      path: path.resolve(__dirname, '../public/assets'),
+      // https://github.com/gregberge/loadable-components/issues/348
+      // https://github.com/webpack/webpack/issues/443#issuecomment-54113862
+      // https://webpack.js.org/guides/public-path/
+      // to request client bundles with correct exposed public path
+      // should match with express static pulbic path
+      publicPath: '/assets/'
     },
     optimization: {
       splitChunks: {

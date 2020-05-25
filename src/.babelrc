@@ -15,4 +15,4 @@
 }
 
 // https://styled-components.com/docs/tooling#syntax-notes
-// Turning rules off
+// Turning style lint rules off

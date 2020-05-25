@@ -9,7 +9,6 @@ module.exports.language = function (req, res, next) {
       maxAge: 31536000000 // one year
     });
   }
-  console.log('selectedLanguage...', selectedLanguage);
 
   req.language = res.locals.language = selectedLanguage;
   next();

@@ -40,8 +40,10 @@ app.use(translations);
 app.use(featuresMiddleware);
 app.use(allPropsHelper);
 
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+
 app.get('/favicon.ico', (req, res) => {
-  res.sendStatus(204);
+  return res.sendStatus(204);
 });
 
 app.post('/set-language', (req, res) => {
@@ -50,7 +52,7 @@ app.post('/set-language', (req, res) => {
     maxAge: 31536000000 // one year
   });
 
-  res.status(200).json({ language: receivedLanguage });
+  return res.status(200).json({ language: receivedLanguage });
 });
 
 app.post('/resources', (req, res) => {

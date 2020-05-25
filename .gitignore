@@ -26,4 +26,4 @@ node_modules/
 functions/build/
 
 #Client build files
-*.bundle*
+*bundle*
