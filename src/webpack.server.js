@@ -44,14 +44,10 @@ const serverConfig = {
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, '../functions/build'),
+      path: path.resolve(__dirname, './build'),
       libraryTarget: 'commonjs2'
     },
-    externals: [
-      nodeExternals({
-        modulesDir: ['../functions/node_modules/']
-      })
-    ],
+    externals: [nodeExternals()],
     plugins: [
       new webpack.BannerPlugin({
         banner: 'require("source-map-support").install();',

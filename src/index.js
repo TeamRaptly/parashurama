@@ -66,7 +66,7 @@ app.post('/resources', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  return renderApp(req, res, {}, 'Generic Page');
+  return renderApp(req, res, {});
 });
 
 module.exports.hanumanServer = functions.https.onRequest(app);

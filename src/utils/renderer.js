@@ -1,9 +1,13 @@
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const { ServerStyleSheet } = require('styled-components');
+const {
+  ServerStyleSheets: MaterialServerStyleSheets
+} = require('@material-ui/core/styles');
 const serialize = require('serialize-javascript');
 const { matchRoutes } = require('react-router-config');
 const { loadRouteData } = require('./gather-route-dependent-resources');
+const { Helmet } = require('react-helmet');
 
 const fetchDependantServerSideResources = async (req, res) => {
   const routeConfig = require('../build/routes.bundle.js').default;
@@ -28,19 +32,19 @@ const fetchDependantServerSideResources = async (req, res) => {
 
 // Helper function to get the markup from React, inject the initial state, and
 // send the server-side markup to the client
-const renderApplication = (req, res, initialState, pageTitle) => {
+const renderApplication = (req, res) => {
   // If initial state is an input from browser or a response from api
   // which can have xss script then use https://github.com/YahooArchive/xss-filters
   // for filtering inputs and then pass to state
   return fetchDependantServerSideResources(req, res).then(
     ({ fetchedResources: resources, bundleToLoad }) => {
       const updatedInitialState = {
-        ...initialState,
         ...res.locals.props,
         ...resources
       };
 
       const sheet = new ServerStyleSheet();
+      const materialSheets = new MaterialServerStyleSheets();
 
       try {
         const ServerApp = React.createElement(
@@ -48,18 +52,31 @@ const renderApplication = (req, res, initialState, pageTitle) => {
           { url: req.url, context: {}, initialState: updatedInitialState }
         );
         // const jsx = extractor.collectChunks(ServerApp);
-        const collectedStyles = sheet.collectStyles(ServerApp);
+        const collectedStyles = sheet.collectStyles(
+          materialSheets.collect(ServerApp)
+        );
         const html = ReactDOMServer.renderToString(collectedStyles);
-        // Collect your style tags
+
+        // Pick Helmet properties
+        // Should be placed after renderToString
+        const helmet = Helmet.renderStatic();
+
+        // Collect your styled-components style tags
         const styleTags = sheet.getStyleTags();
+
+        // Grab the Material UI CSS from the sheets.
+        const materialStyleCSS = materialSheets.toString();
+
+        console.log('helmet.title.toString()....', helmet.title.toString());
 
         // Load hbs layout - index.hbs
         // with main.hbs(default hbs behaviour) layout
         return res.render('index', {
           reactApp: html,
           initialState: `${serialize(updatedInitialState)}`,
-          title: pageTitle,
+          title: helmet.title.toString(),
           styles: styleTags,
+          materialStyles: materialStyleCSS,
           // bundles to load per page
           bundles: [`${bundleToLoad || 'home'}`]
         });

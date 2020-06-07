@@ -3,7 +3,7 @@ import axios from 'axios';
 export const changeLanguage = (payload) => async (dispatch, getState) => {
   try {
     const response = await axios.post('/set-language', {
-      language: 'kn'
+      language: payload
     });
     if (response.status === 200) {
       dispatch({

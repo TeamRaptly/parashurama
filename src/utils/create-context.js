@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import _Helpers from '../utils/helpers';
+import _Helpers from './helpers';
 
 export const contextTypes = {
   c: PropTypes.func.isRequired,

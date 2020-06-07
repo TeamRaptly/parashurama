@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-fetch';
+const fetch = require('isomorphic-fetch');
 
-export default function getFacts() {
+module.exports.getFacts = () => {
   return fetch('https://ssr-react.firebaseio.com/facts.json').then((res) =>
     res.json()
   );
-}
+};

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 const FeaturesContainer = styled.div`
   margin-bottom: 12px;
+  color: red;
 `;
 
 const FeaturesListItem = styled.li`

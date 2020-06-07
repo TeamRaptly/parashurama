@@ -3,10 +3,27 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeLanguage } from '../actions/app-action-creators';
 import { getFacts } from '../reducers/facts';
+import { Button } from '@material-ui/core';
+import { withStyles, styled as materialStyled } from '@material-ui/core/styles';
+import styled from 'styled-components';
 
 const mapStateToProps = (state) => ({
   facts: getFacts(state)
 });
+
+// const MaterialButton = materialStyled(Button)(({ theme }) => ({
+//   padding: theme.spacing(1)
+// }));
+
+const styles = (theme) => ({
+  materialButton: {
+    padding: theme.spacing(1)
+  }
+});
+
+const LinkWrapper = styled('span')`
+  margin: 15px;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -15,12 +32,13 @@ class App extends React.Component {
 
   // TODO: Remove once language changer is implemented
   // Just used for debugging language changer
-  handleClick = (e) => {
+  handleClick = (e, language) => {
     e.preventDefault();
-    this.props.changeLanguage('kn');
+    this.props.changeLanguage(language);
   };
 
   render() {
+    const { classes = {} } = this.props;
     const facts =
       this.props.facts &&
       this.props.facts.map((fact, i) => {
@@ -32,11 +50,37 @@ class App extends React.Component {
     return (
       <>
         <ul>{facts}</ul>
-        <div onClick={this.handleClick}>Language changer</div>
-        <Link to="/about">About</Link>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.materialButton}
+          onClick={(e) => this.handleClick(e, 'en')}
+        >
+          Language changer - English
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.materialButton}
+          onClick={(e) => this.handleClick(e, 'kn')}
+        >
+          Language changer - Kannada
+        </Button>
+        {/* <button onClick={(e) => this.handleClick(e, 'en')}>
+          Language changer - English
+        </button>
+        <button onClick={(e) => this.handleClick(e, 'kn')}>
+          Language changer - Kannada
+        </button> */}
+
+        <Link to="/about">
+          <LinkWrapper>About</LinkWrapper>
+        </Link>
       </>
     );
   }
 }
 
-export default connect(mapStateToProps, { changeLanguage })(App);
+export default connect(mapStateToProps, { changeLanguage })(
+  withStyles(styles)(App)
+);

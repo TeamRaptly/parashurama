@@ -23,7 +23,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "scripts": {
-    "c-install": "npm ci && cd functions && npm ci && cd ../src && npm ci",
+    "c-install": "npm ci && cd src && npm ci",
     "build": "NODE_ENV=production cd src && npm run build",
     "dev": "HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:build-server": "cd src && npm run devServer",
