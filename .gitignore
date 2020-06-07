@@ -26,4 +26,4 @@ node_modules/
 build/
 
 #Client build files
-*bundle*
+public/
