@@ -26,7 +26,6 @@ ul li {
   display: flex;
   align-items: center;
 }
-
 `;
 
 export default function DefaultLayout(props) {

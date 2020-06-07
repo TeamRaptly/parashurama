@@ -11,6 +11,9 @@ const mapStateToProps = (state) => ({
   facts: getFacts(state)
 });
 
+//  Use this with `styled` from '@material-ui/core/styles'
+// To override any Material UI style and based on style component
+// You can use any tag here to override ex: Button
 // const MaterialButton = materialStyled(Button)(({ theme }) => ({
 //   padding: theme.spacing(1)
 // }));
@@ -66,13 +69,6 @@ class App extends React.Component {
         >
           Language changer - Kannada
         </Button>
-        {/* <button onClick={(e) => this.handleClick(e, 'en')}>
-          Language changer - English
-        </button>
-        <button onClick={(e) => this.handleClick(e, 'kn')}>
-          Language changer - Kannada
-        </button> */}
-
         <Link to="/about">
           <LinkWrapper>About</LinkWrapper>
         </Link>

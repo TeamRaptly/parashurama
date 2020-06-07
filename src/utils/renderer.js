@@ -51,7 +51,6 @@ const renderApplication = (req, res) => {
           require('../build/server.bundle.js').default,
           { url: req.url, context: {}, initialState: updatedInitialState }
         );
-        // const jsx = extractor.collectChunks(ServerApp);
         const collectedStyles = sheet.collectStyles(
           materialSheets.collect(ServerApp)
         );
@@ -67,8 +66,6 @@ const renderApplication = (req, res) => {
         // Grab the Material UI CSS from the sheets.
         const materialStyleCSS = materialSheets.toString();
 
-        console.log('helmet.title.toString()....', helmet.title.toString());
-
         // Load hbs layout - index.hbs
         // with main.hbs(default hbs behaviour) layout
         return res.render('index', {
@@ -78,6 +75,7 @@ const renderApplication = (req, res) => {
           styles: styleTags,
           materialStyles: materialStyleCSS,
           // bundles to load per page
+          // Check if we can do this automated using webpack
           bundles: [`${bundleToLoad || 'home'}`]
         });
       } catch (error) {
