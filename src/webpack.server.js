@@ -37,10 +37,7 @@ const serverConfig = {
     target: 'node',
     module: serverModule,
     entry: {
-      server: './containers/ServerApp.js',
-      // Remove components from route config
-      // and make the component dynamically loaded with page bundles
-      routes: './route-config/index.js'
+      server: './containers/ServerApp.js'
     },
     output: {
       filename: '[name].bundle.js',

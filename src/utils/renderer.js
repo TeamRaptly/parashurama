@@ -1,17 +1,16 @@
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const { ServerStyleSheet } = require('styled-components');
-const {
-  ServerStyleSheets: MaterialServerStyleSheets
-} = require('@material-ui/core/styles');
-const serialize = require('serialize-javascript');
-const { matchRoutes } = require('react-router-config');
-const { loadRouteData } = require('./gather-route-dependent-resources');
-const { Helmet } = require('react-helmet');
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheets as MaterialServerStyleSheets } from '@material-ui/core/styles';
+import serialize from 'serialize-javascript';
+import { matchRoutes } from 'react-router-config';
+import { loadRouteData } from './gather-route-dependent-resources';
+import { Helmet } from 'react-helmet';
+import ServerApp, { RouteConfig } from '../build/server.bundle';
 
 const fetchDependantServerSideResources = async (req, res) => {
-  const routeConfig = require('../build/routes.bundle.js').default;
-  const branch = matchRoutes(routeConfig, req.url);
+  // const routeConfig = require('../build/routes.bundle.js').default;
+  const branch = matchRoutes(RouteConfig, req.url);
   const foundBranch = branch.find(
     ({ route, match }) =>
       Array.isArray(route.resources) && route.resources.length
@@ -47,12 +46,18 @@ const renderApplication = (req, res) => {
       const materialSheets = new MaterialServerStyleSheets();
 
       try {
-        const ServerApp = React.createElement(
-          require('../build/server.bundle.js').default,
-          { url: req.url, context: {}, initialState: updatedInitialState }
-        );
+        // const ServerApp = React.createElement(
+        //   require('../build/server.bundle.js').default,
+        //   { url: req.url, context: {}, initialState: updatedInitialState }
+        // );
         const collectedStyles = sheet.collectStyles(
-          materialSheets.collect(ServerApp)
+          materialSheets.collect(
+            <ServerApp
+              url={req.url}
+              context={{}}
+              initialState={updatedInitialState}
+            />
+          )
         );
         const html = ReactDOMServer.renderToString(collectedStyles);
 

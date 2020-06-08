@@ -36,3 +36,6 @@ export default class ServerApp extends React.Component {
     );
   }
 }
+
+//Exposed to server(node) so that we can only use 1 build file for server
+export const RouteConfig = Routes;

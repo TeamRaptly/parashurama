@@ -1,72 +1,86 @@
-const functions = require('firebase-functions');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const hbs = require('express-handlebars');
-const path = require('path');
+// Polyfilling
+require('core-js');
+require('regenerator-runtime/runtime');
 
-const { renderApp } = require('./utils/renderer');
-const { loadRouteData } = require('./utils/gather-route-dependent-resources');
-
-const { language } = require('./middlewares/language');
-const { translations } = require('./middlewares/translations');
-const { config } = require('./middlewares/config');
-const { allPropsHelper } = require('./middlewares/locals-props-helper');
-const { enhanceLocalsProps } = require('./middlewares/enhance-locals-props');
-const { featuresMiddleware } = require('./middlewares/features');
-
-const app = express();
-
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+process.env.HOST_ENV = process.env.HOST_ENV || 'local';
 process.env.IS_SERVER = true;
 
-// view engine setup
-app.engine(
-  'hbs',
-  hbs({
-    extname: 'hbs'
-  })
-);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+const optimiseForProduction = process.env.NODE_ENV === 'production';
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-
-app.use(enhanceLocalsProps);
-app.use(config);
-app.use(language);
-app.use(translations);
-app.use(featuresMiddleware);
-app.use(allPropsHelper);
-
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
-
-app.get('/favicon.ico', (req, res) => {
-  return res.sendStatus(204);
+// needed to prevent syntax errors when running code on server.
+// dynamic imports still need to be wrapped in if (!process.env.CLIENT_SIDE) { ... }
+// or similar
+const renameDynamicImports = () => ({
+  visitor: {
+    CallExpression(path) {
+      if (path.node.callee.type === 'Import') {
+        path.replaceWith(
+          types.stringLiteral('Dynamic imports not supported on server')
+        );
+      }
+    }
+  }
 });
 
-app.post('/set-language', (req, res) => {
-  const receivedLanguage = req.body.language;
-  res.cookie('selectedLanguage', receivedLanguage, {
-    maxAge: 31536000000 // one year
-  });
+const nodePreset = () => {
+  const presets = ['@babel/preset-react'];
+  const plugins = [
+    // Stage 2
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
 
-  return res.status(200).json({ language: receivedLanguage });
+    // Stage 3
+    '@babel/plugin-syntax-dynamic-import',
+    ['@babel/plugin-proposal-class-properties', { loose: false }],
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-nullish-coalescing-operator',
+    ['@babel/plugin-transform-classes', {}, 'transform-classes']
+  ];
+
+  presets.push([
+    '@babel/preset-env',
+    {
+      modules: 'commonjs',
+      targets: {
+        node: 'current'
+      },
+      useBuiltIns: 'entry',
+      corejs: 3
+    }
+  ]);
+
+  if (optimiseForProduction) {
+    plugins.push(
+      [
+        'babel-plugin-transform-react-remove-prop-types',
+        {
+          mode: 'remove',
+          removeImport: true
+        }
+      ],
+      '@babel/plugin-transform-react-constant-elements',
+      '@babel/plugin-transform-react-inline-elements'
+    );
+  }
+
+  return function () {
+    return {
+      presets: presets,
+      plugins: plugins
+    };
+  };
+};
+
+//Enable next imported files to be ES6+
+require('@babel/register')({
+  babelrc: false,
+  presets: [nodePreset()],
+  // This will override `node_modules` ignoring - you can alternatively pass
+  // an array of strings to be explicitly matched or a regex / glob
+  ignore: [/node_modules/, /build/, /public/],
+  cache: !optimiseForProduction,
+  plugins: [renameDynamicImports],
+  extensions: ['.js', '.jsx']
 });
 
-app.post('/resources', (req, res) => {
-  return loadRouteData(req, res, req.body)
-    .then((data) => {
-      return res.json(data);
-    })
-    .catch((err) => {
-      return res.status(400).send('Error fetching data>>>', err);
-    });
-});
-
-app.get('*', (req, res) => {
-  return renderApp(req, res, {});
-});
-
-module.exports.hanumanServer = functions.https.onRequest(app);
+module.exports.hanumanServer = require('./server').hanumanServer;

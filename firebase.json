@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "src/public",
     "rewrites": [
       {
         "source": "**",
@@ -10,5 +10,11 @@
   },
   "functions": {
     "source": "src"
+  },
+  "emulators": {
+    "functions": {
+      "host": "localhost",
+      "port": "6000"
+    }
   }
 }
