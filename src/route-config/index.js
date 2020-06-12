@@ -9,19 +9,6 @@ import loadable from '@loadable/component';
 // which bundle to load for a route to render on server side
 export default [
   {
-    path: '/about',
-    component: DefaultLayout, //loadable(() => import('../layouts/default')),
-    routes: [
-      {
-        resources: [],
-        component: loadable(() =>
-          import(/* webpackChunkName: "about" */ '../components/pages/about')
-        ),
-        bundle: 'about'
-      }
-    ]
-  },
-  {
     path: '/',
     exact: true,
     component: DefaultLayout, //loadable(() => import('../layouts/default')),
@@ -36,7 +23,22 @@ export default [
     ]
   },
   {
-    path: '/_features',
+    path: '/about',
+    component: DefaultLayout, //loadable(() => import('../layouts/default')),
+    routes: [
+      {
+        resources: [],
+        component: loadable(() =>
+          import(/* webpackChunkName: "about" */ '../components/pages/about')
+        ),
+        bundle: 'about'
+      }
+    ]
+  },
+  {
+    // react-router-config use https://www.npmjs.com/package/path-to-regexp module
+    // to match paths, hence the below regex
+    path: '/_features(.*)',
     component: DefaultLayout, //loadable(() => import('../layouts/default')),
     routes: [
       {
@@ -51,7 +53,7 @@ export default [
     ]
   },
   {
-    path: '/',
+    path: '*',
     component: DefaultLayout, //loadable(() => import('../layouts/default')),
     routes: [
       {

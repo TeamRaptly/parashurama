@@ -8,21 +8,6 @@ process.env.IS_SERVER = true;
 
 const optimiseForProduction = process.env.NODE_ENV === 'production';
 
-// needed to prevent syntax errors when running code on server.
-// dynamic imports still need to be wrapped in if (!process.env.CLIENT_SIDE) { ... }
-// or similar
-const renameDynamicImports = () => ({
-  visitor: {
-    CallExpression(path) {
-      if (path.node.callee.type === 'Import') {
-        path.replaceWith(
-          types.stringLiteral('Dynamic imports not supported on server')
-        );
-      }
-    }
-  }
-});
-
 const nodePreset = () => {
   const presets = ['@babel/preset-react'];
   const plugins = [
@@ -62,16 +47,16 @@ const nodePreset = () => {
       '@babel/plugin-transform-react-inline-elements'
     );
   }
-
-  return function () {
+  // eslint-disable-next-line func-names
+  return function fn() {
     return {
-      presets: presets,
-      plugins: plugins
+      presets,
+      plugins
     };
   };
 };
 
-//Enable next imported files to be ES6+
+// Enable next imported files to be ES6+
 require('@babel/register')({
   babelrc: false,
   presets: [nodePreset()],
@@ -79,7 +64,6 @@ require('@babel/register')({
   // an array of strings to be explicitly matched or a regex / glob
   ignore: [/node_modules/, /build/, /public/],
   cache: !optimiseForProduction,
-  plugins: [renameDynamicImports],
   extensions: ['.js', '.jsx']
 });
 

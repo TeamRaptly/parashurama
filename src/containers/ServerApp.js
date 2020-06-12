@@ -8,33 +8,30 @@ import { renderRoutes } from 'react-router-config';
 import CreateContext from '../utils/create-context';
 import reducers, { getDefaultStateFromProps } from '../reducers';
 import Routes from '../route-config';
-import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../theme';
+import ThemeContext from '../utils/theme-context';
 
-export default class ServerApp extends React.Component {
-  render() {
-    const {
-      initialState: { helpers }
-    } = this.props;
+export default function ServerApp(props) {
+  const {
+    initialState: { helpers }
+  } = props;
 
-    const store = createStore(
-      enableBatching(reducers),
-      getDefaultStateFromProps(this.props.initialState),
-      applyMiddleware(thunk)
-    );
+  const store = createStore(
+    enableBatching(reducers),
+    getDefaultStateFromProps(props.initialState),
+    applyMiddleware(thunk)
+  );
 
-    return (
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <StaticRouter location={this.props.url} context={this.props.context}>
-            <CreateContext helpers={helpers}>
-              {renderRoutes(Routes)}
-            </CreateContext>
-          </StaticRouter>
-        </Provider>
-      </ThemeProvider>
-    );
-  }
+  return (
+    <Provider store={store}>
+      <ThemeContext>
+        <StaticRouter location={props.url} context={props.context}>
+          <CreateContext helpers={helpers}>
+            {renderRoutes(Routes)}
+          </CreateContext>
+        </StaticRouter>
+      </ThemeContext>
+    </Provider>
+  );
 }
 
 //Exposed to server(node) so that we can only use 1 build file for server

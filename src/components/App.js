@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeLanguage } from '../actions/app-action-creators';
 import { getFacts } from '../reducers/facts';
-import { Button } from '@material-ui/core';
+import { Button, ListItem, List, ListItemText, Link } from '@material-ui/core';
 import { withStyles, styled as materialStyled } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
@@ -25,7 +25,7 @@ const styles = (theme) => ({
 });
 
 const LinkWrapper = styled('span')`
-  margin: 15px;
+  /* margin: 15px; */
 `;
 
 class App extends React.Component {
@@ -46,32 +46,36 @@ class App extends React.Component {
       this.props.facts &&
       this.props.facts.map((fact, i) => {
         if (fact) {
-          return <li key={i}>{fact.text}</li>;
+          return (
+            <ListItem key={i}>
+              <ListItemText primary={fact.text} />
+            </ListItem>
+          );
         }
       });
 
     return (
       <>
-        <ul>{facts}</ul>
+        <List>{facts}</List>
         <Button
-          variant="contained"
           color="primary"
+          variant="contained"
           className={classes.materialButton}
           onClick={(e) => this.handleClick(e, 'en')}
         >
           Language changer - English
         </Button>
         <Button
-          variant="contained"
-          color="primary"
+          color="secondary"
+          variant="outlined"
           className={classes.materialButton}
           onClick={(e) => this.handleClick(e, 'kn')}
         >
           Language changer - Kannada
         </Button>
-        <Link to="/about">
+        <Button component={RouterLink} to="/about" variant="outlined">
           <LinkWrapper>About</LinkWrapper>
-        </Link>
+        </Button>
       </>
     );
   }

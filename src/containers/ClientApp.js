@@ -10,8 +10,7 @@ import CreateContext from '../utils/create-context';
 import reducers, { getDefaultStateFromProps } from '../reducers';
 import PendingNavDataLoader from '../utils/pending-nav-data-loader';
 import Routes from '../route-config';
-import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../theme';
+import ThemeContext from '../utils/theme-context';
 
 function ClientApp() {
   const store = createStore(
@@ -28,8 +27,8 @@ function ClientApp() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeContext>
         <BrowserRouter>
           <CreateContext>
             <PendingNavDataLoader routes={Routes}>
@@ -37,8 +36,8 @@ function ClientApp() {
             </PendingNavDataLoader>
           </CreateContext>
         </BrowserRouter>
-      </Provider>
-    </ThemeProvider>
+      </ThemeContext>
+    </Provider>
   );
 }
 

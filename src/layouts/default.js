@@ -1,40 +1,32 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import { createGlobalStyle } from 'styled-components';
+import { connect } from 'react-redux';
+import { Switch } from '@material-ui/core';
+import { toggleThemeType } from '../actions/app-theme-action-creators';
+import { getCurrentThemeType } from '../reducers/app-theme';
+import { NoSsr } from '@material-ui/core';
 
-const DefaultLayoutGlobalStyle = createGlobalStyle`
-  body {
-  background-color: #c6e0f8;
-  font-family: Roboto, Arial, sans-serif;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
+const mapStateToProps = (state) => ({
+  themeType: getCurrentThemeType(state)
+});
 
-ul {
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  font-size: 18px;
-  list-style-type: none;
-  height: 48px;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.63);
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.42);
-  display: flex;
-  align-items: center;
-}
-`;
-
-export default function DefaultLayout(props) {
+function DefaultLayout(props) {
   return (
     <>
-      <DefaultLayoutGlobalStyle />
       <h1>Header</h1>
+      <NoSsr>
+        <Switch
+          checked={props.themeType === 'light' ? false : true}
+          onChange={props.toggleThemeType}
+          color="primary"
+          name="theme-type-changer"
+          inputProps={{ 'aria-label': 'Change theme' }}
+        />
+      </NoSsr>
       {renderRoutes(props.route.routes)}
       <h1>Footer</h1>
     </>
   );
 }
+
+export default connect(mapStateToProps, { toggleThemeType })(DefaultLayout);

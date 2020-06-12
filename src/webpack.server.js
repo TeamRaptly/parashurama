@@ -1,7 +1,8 @@
-const baseConfig = require('./webpack.config');
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const baseConfig = require('./webpack.config');
+
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
 

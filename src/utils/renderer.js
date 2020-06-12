@@ -31,7 +31,7 @@ const fetchDependantServerSideResources = async (req, res) => {
 
 // Helper function to get the markup from React, inject the initial state, and
 // send the server-side markup to the client
-const renderApplication = (req, res) => {
+export const renderApp = (req, res) => {
   // If initial state is an input from browser or a response from api
   // which can have xss script then use https://github.com/YahooArchive/xss-filters
   // for filtering inputs and then pass to state
@@ -80,7 +80,6 @@ const renderApplication = (req, res) => {
           styles: styleTags,
           materialStyles: materialStyleCSS,
           // bundles to load per page
-          // Check if we can do this automated using webpack
           bundles: [`${bundleToLoad || 'home'}`]
         });
       } catch (error) {
@@ -92,5 +91,3 @@ const renderApplication = (req, res) => {
     }
   );
 };
-
-module.exports.renderApp = renderApplication;

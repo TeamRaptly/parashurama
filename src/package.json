@@ -15,7 +15,7 @@
     "test": "jest",
     "analyze-client-bundle": "node tools/bundle-analyze-client.js",
     "analyze-server-bundle": "node tools/bundle-analyze-server.js",
-    "lint": "eslint --max-warnings=0 *.js",
+    "lint:js": "eslint --max-warnings=0 *.js",
     "serve": "firebase serve --only functions",
     "shell": "firebase experimental:functions:shell",
     "start": "npm run shell",
@@ -45,6 +45,7 @@
     "firebase-admin": "8.9.2",
     "firebase-functions": "3.3.0",
     "firebase-tools": "8.2.0",
+    "isomorphic-fetch": "2.2.1",
     "merge": "1.2.1",
     "prop-types": "15.7.2",
     "ramda": "0.27.0",
@@ -60,7 +61,9 @@
     "redux-thunk": "2.3.0",
     "regenerator-runtime": "0.13.5",
     "serialize-javascript": "3.0.0",
-    "styled-components": "4.4.1"
+    "styled-components": "4.4.1",
+    "webpack": "4.43.0",
+    "webpack-node-externals": "1.7.2"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -91,9 +94,7 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-custom-processor-loader": "0.6.0",
     "stylelint-processor-styled-components": "1.10.0",
-    "webpack": "4.43.0",
     "webpack-bundle-analyzer": "3.8.0",
-    "webpack-cli": "3.3.11",
-    "webpack-node-externals": "1.7.2"
+    "webpack-cli": "3.3.11"
   }
 }

@@ -4,11 +4,16 @@
     "browser": true,
     "es6": true,
     "node": true,
-    "jest/globals": true,
-    "webdriverio/wdio": true,
-    "mocha": true
+    "jest/globals": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "plugin:jest/all"
+  ],
   "plugins": ["prettier", "jest"],
   "rules": {
     "indent": ["error", 2],
