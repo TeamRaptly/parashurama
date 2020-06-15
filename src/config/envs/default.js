@@ -3,6 +3,5 @@ module.exports = {
   supportedLanguages: ['en', 'kn'],
   _secret: 'something very secret',
   _usingFeatureFlipping: true,
-  enableList: true,
-  PORT: 443
+  enableList: true
 };
