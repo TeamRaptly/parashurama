@@ -43,8 +43,6 @@
     "express-handlebars": "4.0.4",
     "firebase": "7.9.2",
     "firebase-admin": "8.9.2",
-    "firebase-functions": "3.3.0",
-    "firebase-tools": "8.2.0",
     "isomorphic-fetch": "2.2.1",
     "merge": "1.2.1",
     "prop-types": "15.7.2",
