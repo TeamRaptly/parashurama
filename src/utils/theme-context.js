@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { getCurrentThemeType } from '../reducers/app-theme';
 import { CssBaseline } from '@material-ui/core';
 import theme from '../theme';
@@ -21,10 +21,10 @@ function ThemeContext(props) {
   });
 
   return (
-    <ThemeProvider theme={modifiedTheme}>
+    <MuiThemeProvider theme={modifiedTheme}>
       <CssBaseline />
       {props.children}
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 

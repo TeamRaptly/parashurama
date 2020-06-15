@@ -6,6 +6,9 @@ const baseConfig = require('./webpack.config');
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
 
+console.log('server webpack env...', nodeEnv);
+console.log('server webpack isProduction...', isProduction);
+
 const serverModule = {
   ...baseConfig.module,
   ...{

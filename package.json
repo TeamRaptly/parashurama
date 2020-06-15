@@ -2,10 +2,7 @@
   "name": "hanuman",
   "version": "1.0.0",
   "description": "This hosts the Next.js app on Firebase Cloud Functions with Firebase Hosting rewrite rules so our app is served from our Firebase Hosting URL. Each individual page bundle is served in a new call to the Cloud Function which performs the initial server render.",
-  "main": "index.js",
-  "engines": {
-    "node": "10.13.0"
-  },
+  "main": "src/index.js",
   "dependencies": {
     "@babel/polyfill": "7.8.7",
     "@google-cloud/functions-emulator": "1.0.0-beta.6",
@@ -15,6 +12,7 @@
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.6",
     "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/plugin-proposal-decorators": "7.10.1",
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
     "babel-eslint": "10.1.0",
@@ -36,16 +34,17 @@
   },
   "scripts": {
     "c-install": "npm ci && cd src && npm ci",
-    "build": "cross-env NODE_ENV=production cd src && npm run build",
+    "build": "cd src && npm run build",
     "dev": "cross-env HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
-    "dev:build-server": "cd src && npm run devServer",
-    "dev:build-client": "cd src && npm run devClient",
-    "dev-server": "cross-env HOST_ENV=local NODE_ENV=development firebase serve --only functions,hosting",
-    "debug-server": "cross-env HOST_ENV=local NODE_ENV=development firebase emulators:start --inspect-functions --only functions,hosting",
+    "dev:build-server": "cd src && npm run build-dev-server",
+    "dev:build-client": "cd src && npm run build-dev-client",
+    "dev-server": "cd src && cross-env HOST_ENV=local NODE_ENV=development npm run dev-server",
+    "debug-server": "cd src && cross-env HOST_ENV=local NODE_ENV=development npm run dev-server -- --inspect",
     "analyze": "cross-env NODE_ENV=production npm-run-all --parallel analyze:*",
     "analyze:client-bundle": "cd src && npm run analyze-client-bundle",
     "analyze:server-bundle": "cd src && npm run analyze-server-bundle",
-    "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*"
+    "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*",
+    "start": "cd src && cross-env HOST_ENV=production NODE_ENV=production npm run start"
   },
   "repository": {
     "type": "git",

@@ -21,6 +21,7 @@ export default class CreateContext extends Component {
 
   constructor(props, context) {
     super(props, context);
+    console.log('process.env.IS_SERVER>>>>', process.env.IS_SERVER);
 
     if (!process.env.IS_SERVER) {
       this._helpers = new _Helpers(window.__initialState.helpers);

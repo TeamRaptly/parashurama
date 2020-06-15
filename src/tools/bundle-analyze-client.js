@@ -4,12 +4,12 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const webpackConfigClient = require('../webpack.client');
-const webpackConfigServer = require('../webpack.server');
 
 // Client bundle
 webpackConfigClient.plugins.push(
   new BundleAnalyzerPlugin({
-    analyzerPort: 9999
+    analyzerPort: 9999,
+    openAnalyzer: true
   })
 );
 

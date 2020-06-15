@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "src/public",
+    "public": "public",
     "rewrites": [
       {
         "source": "**",
@@ -9,7 +9,7 @@
     ]
   },
   "functions": {
-    "source": "src"
+    "source": "."
   },
   "emulators": {
     "functions": {

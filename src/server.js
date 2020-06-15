@@ -1,10 +1,8 @@
-import * as functions from 'firebase-functions';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import hbs from 'express-handlebars';
 import path from 'path';
-
 import { renderApp } from './utils/renderer';
 import { loadRouteData } from './utils/gather-route-dependent-resources';
 import { language } from './middlewares/language';
@@ -15,6 +13,7 @@ import { enhanceLocalsProps } from './middlewares/enhance-locals-props';
 import { featuresMiddleware } from './middlewares/features';
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // view engine setup
 app.engine(
@@ -66,4 +65,4 @@ app.get('*', (req, res) => {
   return renderApp(req, res, {});
 });
 
-export const hanumanServer = functions.https.onRequest(app);
+app.listen(port, () => console.log(`Hanuman server started at PORT: ${port}`));

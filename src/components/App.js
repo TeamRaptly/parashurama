@@ -3,9 +3,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeLanguage } from '../actions/app-action-creators';
 import { getFacts } from '../reducers/facts';
-import { Button, ListItem, List, ListItemText, Link } from '@material-ui/core';
-import { withStyles, styled as materialStyled } from '@material-ui/core/styles';
-import styled from 'styled-components';
+import { Button, ListItem, List, ListItemText } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
 const mapStateToProps = (state) => ({
   facts: getFacts(state)
@@ -23,10 +22,6 @@ const styles = (theme) => ({
     padding: theme.spacing(1)
   }
 });
-
-const LinkWrapper = styled('span')`
-  /* margin: 15px; */
-`;
 
 class App extends React.Component {
   constructor(props) {
@@ -74,7 +69,7 @@ class App extends React.Component {
           Language changer - Kannada
         </Button>
         <Button component={RouterLink} to="/about" variant="outlined">
-          <LinkWrapper>About</LinkWrapper>
+          <span>About</span>
         </Button>
       </>
     );

@@ -1,10 +1,9 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { connect } from 'react-redux';
-import { Switch } from '@material-ui/core';
+import { Switch, NoSsr } from '@material-ui/core';
 import { toggleThemeType } from '../actions/app-theme-action-creators';
 import { getCurrentThemeType } from '../reducers/app-theme';
-import { NoSsr } from '@material-ui/core';
 
 const mapStateToProps = (state) => ({
   themeType: getCurrentThemeType(state)

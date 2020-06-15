@@ -110,7 +110,6 @@ const featuresMiddleware = (req, res, next) => {
       }, {});
 
       res.cookie('feature-toggle', flippedWithValues, {
-        httpOnly: true,
         maxAge: 31536000000 // one year
       });
     } else {

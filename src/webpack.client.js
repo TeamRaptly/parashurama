@@ -1,8 +1,11 @@
 const path = require('path');
 const baseConfig = require('./webpack.config');
-
+const webpack = require('webpack');
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
+
+console.log('client webpack env...', nodeEnv);
+console.log('client webpack isProduction...', isProduction);
 
 const clientConfig = {
   ...baseConfig,
@@ -28,6 +31,12 @@ const clientConfig = {
         cacheGroups: {
           default: false,
           vendors: false,
+          reactmaterial: {
+            test: /[\\/]node_modules[\\/](react|react-dom|@material-ui)[\\/]/,
+            name: 'react-material',
+            chunks: 'all',
+            priority: 30
+          },
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendor',
@@ -46,7 +55,18 @@ const clientConfig = {
         }
       }
     },
-    plugins: []
+    plugins: [
+      // Force imports of packages like @material-ui/core to use the /es versions
+      new webpack.NormalModuleReplacementPlugin(
+        /^@material-ui\/core(\/|$)/,
+        (resource) => {
+          resource.request = resource.request.replace(
+            /^(@[^/+]+\/[^/+]+|[^/+]+)(?:\/esm)?(\/.*)?$/,
+            '$1/esm$2'
+          );
+        }
+      )
+    ]
   }
 };
 
