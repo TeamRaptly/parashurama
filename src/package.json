@@ -62,6 +62,7 @@
     "serialize-javascript": "3.0.0",
     "styled-components": "4.4.1",
     "webpack": "4.43.0",
+    "webpack-cli": "3.3.11",
     "webpack-node-externals": "1.7.2"
   },
   "devDependencies": {
@@ -88,7 +89,6 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-custom-processor-loader": "0.6.0",
     "stylelint-processor-styled-components": "1.10.0",
-    "webpack-bundle-analyzer": "3.8.0",
-    "webpack-cli": "3.3.11"
+    "webpack-bundle-analyzer": "3.8.0"
   }
 }

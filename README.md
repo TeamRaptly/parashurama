@@ -1,5 +1,8 @@
 # hanuman
 
+https://devcenter.heroku.com/articles/nodejs-support#default-web-process-type
+Heroku specific build steps
+
 This hosts the Next.js app on Firebase Cloud Functions with Firebase Hosting rewrite rules so our app is served from our Firebase Hosting URL. Each individual page bundle is served in a new call to the Cloud Function which performs the initial server render.
 
 ## How to use
