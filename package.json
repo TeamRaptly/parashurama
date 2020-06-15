@@ -34,6 +34,7 @@
   },
   "scripts": {
     "c-install": "npm ci && cd src && npm ci",
+    "install": "npm run c-install",
     "build": "cd src && npm run build",
     "dev": "cross-env HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:build-server": "cd src && npm run build-dev-server",
