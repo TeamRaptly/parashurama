@@ -10,28 +10,6 @@ console.log('server webpack env...', nodeEnv);
 // eslint-disable-next-line no-console
 console.log('server webpack isProduction...', isProduction);
 
-const serverModule = {
-  ...baseConfig.module,
-  ...{
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          plugins: ['dynamic-import-node', 'remove-webpack']
-        }
-      },
-      {
-        // Should be after babel-loader
-        test: /\.(js|jsx)$/,
-        loader: 'stylelint-custom-processor-loader',
-        exclude: /node_modules/
-      }
-    ]
-  }
-};
-
 // Note that since this is for the server, it is important to
 // set the target to node and set the libraryTarget to commonjs2
 const serverConfig = {
@@ -50,13 +28,14 @@ const serverConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          plugins: ['dynamic-import-node', 'remove-webpack']
         }
       },
       {
         // Should be after babel-loader
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'stylelint-custom-processor-loader',
         exclude: /node_modules/
       }
