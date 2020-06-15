@@ -16,7 +16,6 @@ const serverConfig = {
   mode: nodeEnv,
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   target: 'node',
-  module: serverModule,
   entry: {
     server: './containers/ServerApp.js'
   },
