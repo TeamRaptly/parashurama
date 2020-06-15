@@ -65,4 +65,5 @@ app.get('*', (req, res) => {
   return renderApp(req, res, {});
 });
 
-app.listen(port, () => console.log(`Hanuman server started at PORT: ${port}`));
+// eslint-disable-next-line no-console
+app.listen(port, () => console.log(`Server listening on PORT: ${port}`));

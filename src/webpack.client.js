@@ -1,10 +1,12 @@
 const path = require('path');
-const baseConfig = require('./webpack.config');
 const webpack = require('webpack');
+const baseConfig = require('./webpack.config');
+
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
-
+// eslint-disable-next-line no-console
 console.log('client webpack env...', nodeEnv);
+// eslint-disable-next-line no-console
 console.log('client webpack isProduction...', isProduction);
 
 const clientConfig = {
@@ -60,6 +62,7 @@ const clientConfig = {
       new webpack.NormalModuleReplacementPlugin(
         /^@material-ui\/core(\/|$)/,
         (resource) => {
+          // eslint-disable-next-line no-param-reassign
           resource.request = resource.request.replace(
             /^(@[^/+]+\/[^/+]+|[^/+]+)(?:\/esm)?(\/.*)?$/,
             '$1/esm$2'

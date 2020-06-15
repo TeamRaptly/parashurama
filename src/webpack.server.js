@@ -6,7 +6,9 @@ const baseConfig = require('./webpack.config');
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
 
+// eslint-disable-next-line no-console
 console.log('server webpack env...', nodeEnv);
+// eslint-disable-next-line no-console
 console.log('server webpack isProduction...', isProduction);
 
 const serverModule = {
