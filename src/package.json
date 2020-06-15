@@ -61,8 +61,11 @@
     "regenerator-runtime": "0.13.5",
     "rimraf": "3.0.2",
     "serialize-javascript": "3.0.0",
+    "source-map-support": "0.5.19",
     "styled-components": "4.4.1",
     "stylelint": "13.6.0",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-styled-components": "0.1.1",
     "stylelint-custom-processor-loader": "0.6.0",
     "stylelint-processor-styled-components": "1.10.0",
     "webpack": "4.43.0",
@@ -86,9 +89,6 @@
     "jest": "26.0.1",
     "jest-styled-components": "7.0.2",
     "nodemon": "2.0.4",
-    "source-map-support": "0.5.19",
-    "stylelint-config-recommended": "3.0.0",
-    "stylelint-config-styled-components": "0.1.1",
     "webpack-bundle-analyzer": "3.8.0"
   }
 }
