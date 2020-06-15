@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "c-install": "npm i && cd src && npm i",
+    "c-install": "npm i --no-shrinkwrap && cd src && npm i",
     "build": "cd src && npm run build",
     "dev": "cross-env HOST_ENV=local NODE_ENV=development npm-run-all --parallel dev:*",
     "dev:build-server": "cd src && npm run build-dev-server",
@@ -25,7 +25,7 @@
     "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*",
     "start": "cd src && cross-env HOST_ENV=production NODE_ENV=production npm run start",
     "heroku-prebuild": "npm run c-install",
-    "heroku-postbuild": "npm run c-install && npm run build && npm prune --production"
+    "heroku-postbuild": "npm run c-install && npm run build"
   },
   "repository": {
     "type": "git",
