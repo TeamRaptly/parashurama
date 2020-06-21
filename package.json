@@ -24,7 +24,7 @@
     "analyze:server-bundle": "cd src && npm run analyze-server-bundle",
     "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*",
     "start": "cd src && cross-env HOST_ENV=production NODE_ENV=production npm run start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run c-install && npm run build && npm run c-install -- --only=prod"
+    "heroku-postbuild": "npm run c-install && npm run build && npm run c-install -- --only=prod"
   },
   "repository": {
     "type": "git",
