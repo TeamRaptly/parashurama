@@ -23,7 +23,7 @@
     "analyze:client-bundle": "cd src && npm run analyze-client-bundle",
     "analyze:server-bundle": "cd src && npm run analyze-server-bundle",
     "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*",
-    "start": "cd src && cross-env HOST_ENV=production NODE_ENV=production npm run start",
+    "start": "cd src && cross-env NODE_ENV=production npm run start",
     "heroku-postbuild": "npm run c-install && npm run build && NPM_CONFIG_PRODUCTION=true npm prune --production && cd src NPM_CONFIG_PRODUCTION=true npm prune --production"
   },
   "repository": {
