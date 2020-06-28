@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 import hbs from 'express-handlebars';
 import path from 'path';
 import { renderApp } from './utils/renderer';
@@ -28,6 +29,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(compression());
 
 app.use(enhanceLocalsProps);
 app.use(config);
