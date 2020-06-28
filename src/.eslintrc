@@ -12,9 +12,10 @@
     "plugin:prettier/recommended",
     "prettier/react",
     "prettier/standard",
-    "plugin:jest/all"
+    "plugin:jest/all",
+    "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["prettier", "jest"],
+  "plugins": ["prettier", "jest", "jsx-a11y"],
   "rules": {
     "indent": ["error", 2],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
