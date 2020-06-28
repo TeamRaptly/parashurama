@@ -80,7 +80,7 @@ export const renderApp = (req, res) => {
           styles: styleTags,
           materialStyles: materialStyleCSS,
           // bundles to load per page
-          bundles: [`${bundleToLoad || 'home'}`]
+          bundles: [`${bundleToLoad || 'error'}`]
         });
       } catch (error) {
         // handle error
