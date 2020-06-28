@@ -3,10 +3,6 @@ const webpack = require('webpack');
 
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
-// eslint-disable-next-line no-console
-console.log('client webpack env...', nodeEnv);
-// eslint-disable-next-line no-console
-console.log('client webpack isProduction...', isProduction);
 
 const clientConfig = {
   mode: nodeEnv,

@@ -5,11 +5,6 @@ const nodeExternals = require('webpack-node-externals');
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
 
-// eslint-disable-next-line no-console
-console.log('server webpack env...', nodeEnv);
-// eslint-disable-next-line no-console
-console.log('server webpack isProduction...', isProduction);
-
 // Note that since this is for the server, it is important to
 // set the target to node and set the libraryTarget to commonjs2
 const serverConfig = {
