@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "chiranjivi-hanuman",
+    "production": "chiranjivi-hanuman",
+    "staging": "chiranjivi-hanuman-staging"
+  }
+}

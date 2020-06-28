@@ -1,23 +1,20 @@
-const functions = require('firebase-functions');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const hbs = require('express-handlebars');
-const path = require('path');
-
-const { renderApp } = require('./utils/renderer');
-const { loadRouteData } = require('./utils/gather-route-dependent-resources');
-
-const { language } = require('./middlewares/language');
-const { translations } = require('./middlewares/translations');
-const { config } = require('./middlewares/config');
-const { allPropsHelper } = require('./middlewares/locals-props-helper');
-const { enhanceLocalsProps } = require('./middlewares/enhance-locals-props');
-const { featuresMiddleware } = require('./middlewares/features');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import compression from 'compression';
+import hbs from 'express-handlebars';
+import path from 'path';
+import { renderApp } from './utils/renderer';
+import { loadRouteData } from './utils/gather-route-dependent-resources';
+import { language } from './middlewares/language';
+import { translations } from './middlewares/translations';
+import { config } from './middlewares/config';
+import { allPropsHelper } from './middlewares/locals-props-helper';
+import { enhanceLocalsProps } from './middlewares/enhance-locals-props';
+import { featuresMiddleware } from './middlewares/features';
 
 const app = express();
-
-process.env.IS_SERVER = true;
+const port = process.env.PORT || 3000;
 
 // view engine setup
 app.engine(
@@ -32,6 +29,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(compression());
 
 app.use(enhanceLocalsProps);
 app.use(config);
@@ -66,7 +64,8 @@ app.post('/resources', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  return renderApp(req, res, {}, 'Generic Page');
+  return renderApp(req, res, {});
 });
 
-module.exports.hanumanServer = functions.https.onRequest(app);
+// eslint-disable-next-line no-console
+app.listen(port, () => console.log(`Server listening on PORT: ${port}`));

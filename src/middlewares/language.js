@@ -1,7 +1,6 @@
 module.exports.language = function (req, res, next) {
   const defaultLanguage = req.config('defaultLanguage');
   const userSelectedLanguage = req.cookies && req.cookies.selectedLanguage;
-
   const selectedLanguage = userSelectedLanguage || defaultLanguage;
 
   if (!userSelectedLanguage) {

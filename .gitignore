@@ -23,7 +23,7 @@ node_modules/
 .firebase/
 
 # Server build files
-functions/build/
+build/
 
 #Client build files
-*bundle*
+public/

@@ -1,6 +1,19 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": 3,
+        "targets": {
+          "browsers": "> 1%, not ie 11, not op_mini all"
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
   "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
     //This should be above the class properties plugin.
     // reason: https://babeljs.io/docs/en/babel-plugin-proposal-decorators#note-compatibility-with-babel-plugin-proposal-class-properties
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
@@ -8,9 +21,20 @@
     "@babel/plugin-transform-arrow-functions",
     "@babel/plugin-transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-nullish-coalescing-operator",
+    ["@babel/plugin-transform-classes", {}, "transform-classes"],
     "babel-plugin-styled-components",
     "babel-plugin-syntax-dynamic-import",
-    "@loadable/babel-plugin"
+    "@loadable/babel-plugin",
+    [
+      "import",
+      {
+        "libraryName": "@material-ui/icons",
+        "libraryDirectory": "", // default: lib
+        "camel2DashComponentName": false // default: true
+      },
+      "@material-ui/icons"
+    ]
   ]
 }
 

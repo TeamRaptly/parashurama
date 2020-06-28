@@ -4,12 +4,18 @@
     "browser": true,
     "es6": true,
     "node": true,
-    "jest/globals": true,
-    "webdriverio/wdio": true,
-    "mocha": true
+    "jest/globals": true
   },
-  "extends": ["airbnb", "plugin:prettier/recommended"],
-  "plugins": ["prettier", "jest"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "plugin:jest/all",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["prettier", "jest", "jsx-a11y"],
   "rules": {
     "indent": ["error", 2],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],

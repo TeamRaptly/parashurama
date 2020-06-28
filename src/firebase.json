@@ -7,5 +7,14 @@
         "function": "hanumanServer"
       }
     ]
+  },
+  "functions": {
+    "source": "."
+  },
+  "emulators": {
+    "functions": {
+      "host": "localhost",
+      "port": "6000"
+    }
   }
 }
