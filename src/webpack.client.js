@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const PwaManifest = require('webpack-pwa-manifest');
-const { GenerateSW } = require('workbox-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -84,6 +82,31 @@ const clientConfig = {
         { from: path.resolve(__dirname, 'assets'), to: 'assets' }
       ]
     }),
+    new RobotstxtPlugin({
+      policy: [
+        {
+          userAgent: 'Googlebot',
+          allow: '/',
+          disallow: ['/_features'],
+          crawlDelay: 2
+        },
+        {
+          userAgent: 'OtherBot',
+          allow: ['/', '/about'],
+          disallow: ['/_features'],
+          crawlDelay: 2
+        },
+        {
+          userAgent: '*',
+          allow: '/',
+          // disallow: '/search',
+          crawlDelay: 10
+          // cleanParam: 'ref /articles/'
+        }
+      ]
+      // sitemap: 'http://example.com/sitemap.xml',
+      // host: 'http://example.com'
+    }),
     // Force imports of packages like @material-ui/core to use the /es versions
     new webpack.NormalModuleReplacementPlugin(
       /^@material-ui\/core(\/|$)/,
@@ -95,7 +118,6 @@ const clientConfig = {
         );
       }
     )
-    // new GenerateSW()
   ]
 };
 
