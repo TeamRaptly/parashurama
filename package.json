@@ -10,7 +10,9 @@
     "cross-env": "7.0.2",
     "npm-run-all": "4.1.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "open-cli": "6.0.1"
+  },
   "scripts": {
     "c-install": "npm i --no-shrinkwrap && cd src && npm i",
     "build": "cd src && npm run build",
@@ -24,7 +26,8 @@
     "analyze:server-bundle": "cd src && npm run analyze-server-bundle",
     "lint": "cd src && cross-env HOST_ENV=test NODE_ENV=production npm-run-all --parallel lint:*",
     "start": "cd src && cross-env NODE_ENV=production npm run start",
-    "heroku-postbuild": "npm run c-install && npm run build && npm prune --production && cd src && npm prune --production"
+    "heroku-postbuild": "npm run c-install && npm run build && npm prune --production && cd src && npm prune --production",
+    "generate-ssl": "cd src/ssl && chmod a+x run-ssl.sh && ./run-ssl.sh && open-cli ./"
   },
   "repository": {
     "type": "git",

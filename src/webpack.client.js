@@ -1,5 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+const PwaManifest = require('webpack-pwa-manifest');
+const { GenerateSW } = require('workbox-webpack-plugin');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
@@ -8,7 +12,8 @@ const clientConfig = {
   mode: nodeEnv,
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   entry: {
-    client: './containers/ClientApp.js'
+    client: './containers/ClientApp.js',
+    sw: './service-worker/service-worker.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -32,13 +37,13 @@ const clientConfig = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public/assets'),
+    path: path.resolve(__dirname, 'public'),
     // https://github.com/gregberge/loadable-components/issues/348
     // https://github.com/webpack/webpack/issues/443#issuecomment-54113862
     // https://webpack.js.org/guides/public-path/
     // to request client bundles with correct exposed public path
     // should match with express static pulbic path
-    publicPath: '/assets/'
+    publicPath: '/public/'
   },
   optimization: {
     splitChunks: {
@@ -71,6 +76,14 @@ const clientConfig = {
     }
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'service-worker', 'manifest.json')
+        },
+        { from: path.resolve(__dirname, 'assets'), to: 'assets' }
+      ]
+    }),
     // Force imports of packages like @material-ui/core to use the /es versions
     new webpack.NormalModuleReplacementPlugin(
       /^@material-ui\/core(\/|$)/,
@@ -82,6 +95,7 @@ const clientConfig = {
         );
       }
     )
+    // new GenerateSW()
   ]
 };
 

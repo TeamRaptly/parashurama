@@ -1,4 +1,6 @@
 import express from 'express';
+import pem from 'pem';
+import https from 'https';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
@@ -38,7 +40,7 @@ app.use(translations);
 app.use(featuresMiddleware);
 app.use(allPropsHelper);
 
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/favicon.ico', (req, res) => {
   return res.sendStatus(204);
@@ -67,5 +69,17 @@ app.get('*', (req, res) => {
   return renderApp(req, res, {});
 });
 
+// if (process.env.NODE_ENV === 'development') {
+//   pem.createCertificate({ days: 1, selfSigned: true }, function (err, keys) {
+//     if (err) {
+//       throw err;
+//     }
+
+//     https
+//       .createServer({ key: keys.serviceKey, cert: keys.certificate }, app)
+//       .listen(443, () => console.log(`HTTPS Server listening on PORT: 443`));
+//   });
+// } else {
 // eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Server listening on PORT: ${port}`));
+// }

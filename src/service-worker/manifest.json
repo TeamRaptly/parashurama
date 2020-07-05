@@ -1,0 +1,16 @@
+{
+  "short_name": "Hanuman",
+  "name": "Hanuman: React Isomorphic PWA",
+  "description": "Weather forecast information",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "theme_color": "#3367D6"
+}
