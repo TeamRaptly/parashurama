@@ -1,5 +1,8 @@
 const cacheName = "hanuman-service-worker-app";
 
+// Caching notes
+// https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+
 self.addEventListener('install', (event) => {
   console.log('Service worker installing...');
   event.waitUntil(
@@ -32,6 +35,21 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   console.log('Service worker activating...');
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+          // Change this to conditional based on resource being requested on network
+          return true;
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
 });
 
 self.addEventListener('fetch', (event) => {

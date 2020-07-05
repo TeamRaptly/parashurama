@@ -13,7 +13,7 @@ const clientConfig = {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   entry: {
     client: './containers/ClientApp.js',
-    sw: './service-worker/service-worker.js'
+    sw: './service-worker/index.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
