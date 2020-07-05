@@ -43,7 +43,7 @@ const clientConfig = {
     // https://webpack.js.org/guides/public-path/
     // to request client bundles with correct exposed public path
     // should match with express static pulbic path
-    publicPath: '/public/'
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
