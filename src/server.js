@@ -38,7 +38,7 @@ app.use(translations);
 app.use(featuresMiddleware);
 app.use(allPropsHelper);
 
-app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.get('/favicon.ico', (req, res) => {
   return res.sendStatus(204);

@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const RobotstxtPlugin = require('robotstxt-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'production';
 const isProduction = nodeEnv === 'production';
@@ -8,7 +10,8 @@ const clientConfig = {
   mode: nodeEnv,
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   entry: {
-    client: './containers/ClientApp.js'
+    client: './containers/ClientApp.js',
+    sw: './service-worker/index.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -32,13 +35,13 @@ const clientConfig = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public/assets'),
+    path: path.resolve(__dirname, 'public'),
     // https://github.com/gregberge/loadable-components/issues/348
     // https://github.com/webpack/webpack/issues/443#issuecomment-54113862
     // https://webpack.js.org/guides/public-path/
     // to request client bundles with correct exposed public path
     // should match with express static pulbic path
-    publicPath: '/assets/'
+    publicPath: '/'
   },
   optimization: {
     splitChunks: {
@@ -71,6 +74,39 @@ const clientConfig = {
     }
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'service-worker', 'manifest.json')
+        },
+        { from: path.resolve(__dirname, 'assets'), to: 'assets' }
+      ]
+    }),
+    new RobotstxtPlugin({
+      policy: [
+        {
+          userAgent: 'Googlebot',
+          allow: '/',
+          disallow: ['/_features'],
+          crawlDelay: 2
+        },
+        {
+          userAgent: 'OtherBot',
+          allow: ['/', '/about'],
+          disallow: ['/_features'],
+          crawlDelay: 2
+        },
+        {
+          userAgent: '*',
+          allow: '/',
+          // disallow: '/search',
+          crawlDelay: 10
+          // cleanParam: 'ref /articles/'
+        }
+      ]
+      // sitemap: 'http://example.com/sitemap.xml',
+      // host: 'http://example.com'
+    }),
     // Force imports of packages like @material-ui/core to use the /es versions
     new webpack.NormalModuleReplacementPlugin(
       /^@material-ui\/core(\/|$)/,
