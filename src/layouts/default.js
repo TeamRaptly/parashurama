@@ -4,37 +4,15 @@ import { connect } from 'react-redux';
 import { Switch, NoSsr } from '@material-ui/core';
 import { toggleThemeType } from '../actions/app-theme-action-creators';
 import { getCurrentThemeType } from '../reducers/app-theme';
-import { makeStyles } from '@material-ui/core/styles';
-import { Divider } from '@material-ui/core';
-import Header from '../components/header';
-import Footer from '../components/footer';
 
 const mapStateToProps = (state) => ({
   themeType: getCurrentThemeType(state)
 });
 
-const useStyles = makeStyles((theme) => ({
-  appBarSpacer: theme.mixins.toolbar,
-  // root: {
-  //   display: 'flex',
-  //   width: '100%'
-  // },
-  footer: {
-    padding: '30px 0px 30px 0px'
-  }
-}));
-
 function DefaultLayout(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
   return (
-    <div className={classes.root}>
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-      <div className={classes.appBarSpacer} />
+    <>
+      <h1>Header</h1>
       <NoSsr>
         <Switch
           checked={props.themeType === 'light' ? false : true}
@@ -45,11 +23,8 @@ function DefaultLayout(props) {
         />
       </NoSsr>
       {renderRoutes(props.route.routes)}
-      <Divider />
-      <div className={classes.footer}>
-        <Footer />
-      </div>
-    </div>
+      <h1>Footer</h1>
+    </>
   );
 }
 
