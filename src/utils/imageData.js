@@ -1,10 +1,10 @@
 const imageData = [
     {
-        img: '/assets/images/groceries.jpg',
+        img: '/assets/images/vegetables.jpg',
         title: 'groceries',
     },
     {
-        img: '/assets/images/vegetables.jpg',
+        img: '/assets/images/breakfast.jpg',
         title: 'groceries',
     },
     {

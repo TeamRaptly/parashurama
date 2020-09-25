@@ -1,4 +1,3 @@
-
 <body>
 	<div id="root">{{{reactApp}}}</div>
 	<script>
@@ -8,10 +7,10 @@
 	<script src='/react-material.bundle.js'></script>
 	<script src='/vendor.bundle.js'></script>
 	<script src='/common.bundle.js'></script>
-	
+
 	{{#each bundles}}
-    <script src="/{{this}}.bundle.js"></script>
-  {{/each}}
+	<script src="/{{this}}.bundle.js"></script>
+	{{/each}}
 	<script src='/client.bundle.js'></script>
 	<script>
 		// Check that service workers are supported

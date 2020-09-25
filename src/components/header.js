@@ -12,14 +12,17 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import HomeIcon from '@material-ui/icons/Home';
+import CategoryIcon from '@material-ui/icons/Category';
+import StorageIcon from '@material-ui/icons/Storage';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import BookIcon from '@material-ui/icons/Book';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import HelpIcon from '@material-ui/icons/Help';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const useStyles = makeStyles((theme) => ({
@@ -88,13 +91,19 @@ export default function SearchAppBar() {
       <Divider />
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <HomeIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Home" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
-          <MenuBookIcon />
+          <CategoryIcon />
+        </ListItemIcon>
+        <ListItemText primary="Shop by Category" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <StorageIcon />
         </ListItemIcon>
         <ListItemText primary="Stock" />
       </ListItem>
@@ -102,25 +111,37 @@ export default function SearchAppBar() {
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Shopping" />
+        <ListItemText primary="Shopping list" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
-          <SettingsIcon />
+          <AccountBoxIcon />
         </ListItemIcon>
-        <ListItemText primary="Preferences" />
+        <ListItemText primary="Your Account" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
-          <AccountCircleIcon />
+          <VerifiedUserIcon />
         </ListItemIcon>
-        <ListItemText primary="Account" />
+        <ListItemText primary="User agreement" />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
-          <HelpIcon />
+          <ContactSupportIcon />
         </ListItemIcon>
         <ListItemText primary="Help" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <BookIcon />
+        </ListItemIcon>
+        <ListItemText primary="How this app works" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+        <ExitToAppIcon />
+        </ListItemIcon>
+        <ListItemText primary="Sign Out" />
       </ListItem>
       <ListItem button component={RouterLink} to="/sign-in">
         <ListItemIcon>

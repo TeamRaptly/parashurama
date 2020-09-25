@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Divider, ListItem } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -20,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: "15px",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -31,8 +34,28 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+    textTransform: 'none',
+    fontSize: "18px"
+  },
+  heroButton: {
+    display: "flex",
+    textAlign: "center",
+    marginBottom: "15px",
+    width: "100%",
+    maxWidth: "250px",
+    textTransform: 'none',
+    backgroundColor: "#ffffff",
+  },
+  listButton: {
+    justifyContent: "center",
+  },
+  listButton1: {
+    justifyContent: "center",
+  },
+  icon: {
+    marginRight: "8px"
+}
 }));
 
 const SignUpView = ({ onSubmit }) => {
@@ -118,8 +141,20 @@ const SignUpView = ({ onSubmit }) => {
           </Grid>
         </form>
       </div>
+      <Divider />
+      <div>
+        <ListItem className={classes.listButton}>
+          <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/mobile-otp">
+          <div className={classes.icon}>
+            <Avatar alt="google" src="/assets/images/btn_google_light_pressed_ios.svg" />
+          </div>
+                        Sign in with google
+          </Button>
+        </ListItem>
+      </div>
     </Container>
   );
 };
 
 export default SignUpView;
+

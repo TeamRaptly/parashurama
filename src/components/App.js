@@ -21,6 +21,7 @@ const styles = (theme) => ({
   materialButton: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
+    textTransform: 'none',
   },
   about: {
     display: "flex",
