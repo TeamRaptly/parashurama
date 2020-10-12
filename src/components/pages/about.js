@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import MapWithSearch from "../map-with-search";
+import MapWithSearch from '../map-with-search';
 
 const useStyles = makeStyles({
   aboutpage: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center'
   }
 });
 

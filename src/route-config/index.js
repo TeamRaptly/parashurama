@@ -42,7 +42,9 @@ export default [
       {
         resources: [],
         component: loadable(() =>
-          import(/* webpackChunkName: "sign-in" */ '../components/pages/sign-in')
+          import(
+            /* webpackChunkName: "sign-in" */ '../components/pages/sign-in'
+          )
         ),
         bundle: 'sign-in'
       }
@@ -55,7 +57,9 @@ export default [
       {
         resources: [],
         component: loadable(() =>
-          import(/* webpackChunkName: "mobile-otp" */ '../components/pages/mobile-otp')
+          import(
+            /* webpackChunkName: "mobile-otp" */ '../components/pages/mobile-otp'
+          )
         ),
         bundle: 'mobile-otp'
       }
@@ -68,7 +72,9 @@ export default [
       {
         resources: [],
         component: loadable(() =>
-          import(/* webpackChunkName: "sign-up" */ '../components/pages/sign-up.js')
+          import(
+            /* webpackChunkName: "sign-up" */ '../components/pages/sign-up.js'
+          )
         ),
         bundle: 'sign-up'
       }

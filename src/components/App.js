@@ -21,12 +21,12 @@ const styles = (theme) => ({
   materialButton: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
-    textTransform: 'none',
+    textTransform: 'none'
   },
   about: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "10px"
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '10px'
   }
 });
 

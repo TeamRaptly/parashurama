@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 });
 
 const useStyles = makeStyles((theme) => ({
-  appBarSpacer: theme.mixins.toolbar,
+  appBarSpacer: theme.mixins.toolbar
 }));
 
 function DefaultLayout(props) {

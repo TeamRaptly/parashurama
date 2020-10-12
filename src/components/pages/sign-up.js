@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Divider, ListItem } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: "15px",
+    marginBottom: '15px'
   },
   avatar: {
     margin: theme.spacing(1),
@@ -36,26 +36,26 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     textTransform: 'none',
-    fontSize: "18px"
+    fontSize: '18px'
   },
   heroButton: {
-    display: "flex",
-    textAlign: "center",
-    marginBottom: "15px",
-    width: "100%",
-    maxWidth: "250px",
+    display: 'flex',
+    textAlign: 'center',
+    marginBottom: '15px',
+    width: '100%',
+    maxWidth: '250px',
     textTransform: 'none',
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff'
   },
   listButton: {
-    justifyContent: "center",
+    justifyContent: 'center'
   },
   listButton1: {
-    justifyContent: "center",
+    justifyContent: 'center'
   },
   icon: {
-    marginRight: "8px"
-}
+    marginRight: '8px'
+  }
 }));
 
 const SignUpView = ({ onSubmit }) => {
@@ -144,11 +144,18 @@ const SignUpView = ({ onSubmit }) => {
       <Divider />
       <div>
         <ListItem className={classes.listButton}>
-          <Button variant="contained" className={classes.heroButton} component={RouterLink}>
-          <div className={classes.icon}>
-            <Avatar alt="google" src="/assets/images/btn_google_light_pressed_ios.svg" />
-          </div>
-                        Sign up with google
+          <Button
+            variant="contained"
+            className={classes.heroButton}
+            component={RouterLink}
+          >
+            <div className={classes.icon}>
+              <Avatar
+                alt="google"
+                src="/assets/images/btn_google_light_pressed_ios.svg"
+              />
+            </div>
+            Sign up with google
           </Button>
         </ListItem>
       </div>
@@ -157,4 +164,3 @@ const SignUpView = ({ onSubmit }) => {
 };
 
 export default SignUpView;
-

@@ -6,25 +6,25 @@ import { Helmet } from 'react-helmet';
 import App from '../App';
 import { fetchResources } from '../../actions/resources-action-creators';
 import { withStyles } from '@material-ui/core/styles';
-import ImageData from "../../utils/imageData";
+import ImageData from '../../utils/imageData';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const useStyles = (theme) => ({
   breakpoint: {
     [theme.breakpoints.down('sm')]: {
-      width: "100%",
-      height: "300px",
+      width: '100%',
+      height: '300px'
     },
     [theme.breakpoints.up('md')]: {
-      width: "100%",
-      height: "400px",
+      width: '100%',
+      height: '400px'
     },
     [theme.breakpoints.up('lg')]: {
-      width: "100%",
-      height: "450px",
+      width: '100%',
+      height: '450px'
     }
-  },
+  }
 });
 
 @withStyles(useStyles)
@@ -39,7 +39,6 @@ export default class Home extends React.Component {
   // }
 
   render() {
-
     const { classes } = this.props;
     return (
       <>
