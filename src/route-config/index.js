@@ -36,6 +36,32 @@ export default [
     ]
   },
   {
+    path: '/sign-in',
+    component: DefaultLayout, //loadable(() => import('../layouts/default')),
+    routes: [
+      {
+        resources: [],
+        component: loadable(() =>
+          import(/* webpackChunkName: "sign-in" */ '../components/pages/sign-in')
+        ),
+        bundle: 'sign-in'
+      }
+    ]
+  },
+  {
+    path: '/sign-up',
+    component: DefaultLayout, //loadable(() => import('../layouts/default')),
+    routes: [
+      {
+        resources: [],
+        component: loadable(() =>
+          import(/* webpackChunkName: "sign-up" */ '../components/pages/sign-up.js')
+        ),
+        bundle: 'sign-up'
+      }
+    ]
+  },
+  {
     // react-router-config use https://www.npmjs.com/package/path-to-regexp module
     // to match paths, hence the below regex
     path: '/_features(.*)',

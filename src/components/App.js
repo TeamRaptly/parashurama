@@ -19,7 +19,13 @@ const mapStateToProps = (state) => ({
 
 const styles = (theme) => ({
   materialButton: {
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
+  },
+  about: {
+    display: "flex",
+    justifyContent: "center",
+    margin: "10px"
   }
 });
 
@@ -68,9 +74,11 @@ class App extends React.Component {
         >
           Language changer - Kannada
         </Button>
-        <Button component={RouterLink} to="/about" variant="outlined">
-          <span>About</span>
-        </Button>
+        <div className={classes.about}>
+          <Button component={RouterLink} to="/about" variant="outlined">
+            <span>About</span>
+          </Button>
+        </div>
       </>
     );
   }
