@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Divider, ListItem } from '@material-ui/core';
+import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -106,17 +107,20 @@ const LoginView = ({ onSubmit }) => {
             <Divider />
             <div>
                 <ListItem className={classes.listButton}>
-                    <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/mobile-otp">
+                <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/sign-in">
+                        <div className={classes.icon}>
+                            <EmailIcon />
+                        </div>        
+                        Sign in with email
+                    </Button>
+                </ListItem>
+                <ListItem className={classes.listButton1}>
+                <Button variant="contained" className={classes.heroButton} component={RouterLink}>
                     <div className={classes.icon}>
                         <Avatar alt="google" src="/assets/images/btn_google_light_pressed_ios.svg" />
                     </div>
                         Sign in with Google
-                    </Button>
-                </ListItem>
-                <ListItem className={classes.listButton1}>
-                    <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/sign-in">
-                        Sign in
-                    </Button>
+                </Button>
                 </ListItem>
             </div>
 
@@ -125,3 +129,5 @@ const LoginView = ({ onSubmit }) => {
 };
 
 export default LoginView;
+
+

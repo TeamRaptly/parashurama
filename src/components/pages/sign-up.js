@@ -144,11 +144,11 @@ const SignUpView = ({ onSubmit }) => {
       <Divider />
       <div>
         <ListItem className={classes.listButton}>
-          <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/mobile-otp">
+          <Button variant="contained" className={classes.heroButton} component={RouterLink}>
           <div className={classes.icon}>
             <Avatar alt="google" src="/assets/images/btn_google_light_pressed_ios.svg" />
           </div>
-                        Sign in with google
+                        Sign up with google
           </Button>
         </ListItem>
       </div>

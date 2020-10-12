@@ -153,7 +153,7 @@ const LoginView = ({ onSubmit }) => {
                     </Button>
                 </ListItem>
                 <ListItem className={classes.listButton1}>
-                    <Button variant="contained" className={classes.heroButton} component={RouterLink} to="/mobile-otp">
+                    <Button variant="contained" className={classes.heroButton} component={RouterLink}>
                         <div className={classes.icon}>
                             <Avatar alt="google" src="/assets/images/btn_google_light_pressed_ios.svg" />
                         </div>
