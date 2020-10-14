@@ -13,11 +13,6 @@ import Container from '@material-ui/core/Container';
 import { Divider, ListItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -39,13 +34,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px'
   },
   heroButton: {
-    display: 'flex',
-    textAlign: 'center',
-    marginBottom: '15px',
-    width: '100%',
-    maxWidth: '250px',
+    backgroundColor: '#ffffff',
+    margin: theme.spacing(1),
     textTransform: 'none',
-    backgroundColor: '#ffffff'
   },
   listButton: {
     justifyContent: 'center'

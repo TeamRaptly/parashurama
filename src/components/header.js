@@ -86,7 +86,7 @@ export default function SearchAppBar() {
         </ListItem>
       </div>
       <Divider />
-      <ListItem button>
+      <ListItem button component={RouterLink} to="/">
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>

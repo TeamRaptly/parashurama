@@ -14,20 +14,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {
   Divider,
-  List,
   ListItem,
-  ListItemIcon,
-  ListItemText,
-  SvgIcon
 } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 
 const useStyles = makeStyles((theme) => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -49,16 +40,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px'
   },
   heroButton: {
-    display: 'flex',
-    textAlign: 'center',
-    marginBottom: '15px',
-    width: '100%',
-    maxWidth: '250px',
+    backgroundColor: '#ffffff',
+    margin: theme.spacing(1),
     textTransform: 'none',
-    backgroundColor: '#ffffff'
-  },
-  icon: {
-    marginRight: '8px'
   },
   listButton: {
     justifyContent: 'center'
@@ -130,36 +114,15 @@ const LoginView = ({ onSubmit }) => {
         </form>
       </div>
       <Divider />
-      {/* <div className={classes.paper}>
-                <Button variant="contained" className={classes.listButton} component={RouterLink} to="/mobile-otp">
-                    <div className={classes.icon}>
-                        <PhoneIcon />
-                    </div>                    
-                    Sign in with phone
-                </Button>
-                <Button
-                    startIcon={<img alt="Google OAuth" src="/assets/images/btn_google_light_pressed_ios.svg" />}
-
-                    variant="contained"
-                    className={classes.listButton2}
-                    component={RouterLink}
-                    to=""
-                >
-                    Sign in with Google
-                </Button>
-            </div> */}
-
       <div>
         <ListItem className={classes.listButton}>
-          <Button
-            variant="contained"
-            className={classes.heroButton}
-            component={RouterLink}
-            to="/mobile-otp"
+          <Button 
+          variant="contained"
+          className={classes.heroButton}
+          component={RouterLink}
+          to="/mobile-otp"
+          startIcon={<PhoneIcon />}
           >
-            <div className={classes.icon}>
-              <PhoneIcon />
-            </div>
             Sign in with phone
           </Button>
         </ListItem>

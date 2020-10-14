@@ -16,11 +16,6 @@ import { Divider, ListItem } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
-  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -40,13 +35,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2)
   },
   heroButton: {
-    display: 'flex',
-    textAlign: 'center',
-    marginBottom: '15px',
-    width: '100%',
-    maxWidth: '250px',
+    backgroundColor: '#ffffff',
+    margin: theme.spacing(1),
     textTransform: 'none',
-    backgroundColor: '#ffffff'
   },
   listButton: {
     justifyContent: 'center'
@@ -110,10 +101,9 @@ const LoginView = ({ onSubmit }) => {
             className={classes.heroButton}
             component={RouterLink}
             to="/sign-in"
+            startIcon={<EmailIcon />}           
           >
-            <div className={classes.icon}>
-              <EmailIcon />
-            </div>
+             
             Sign in with email
           </Button>
         </ListItem>
